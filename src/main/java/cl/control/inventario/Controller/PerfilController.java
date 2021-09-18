@@ -1,9 +1,7 @@
 package cl.control.inventario.Controller;
 
 import cl.control.inventario.Model.Perfil;
-import cl.control.inventario.Model.Usuario;
 import cl.control.inventario.Service.PerfilService;
-import cl.control.inventario.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
