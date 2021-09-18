@@ -4,8 +4,8 @@ import cl.control.inventario.Model.Usuario;
 
 import java.util.List;
 
-public interface UsuarioService {
-    List<Usuario> findAll();
+public interface UsuarioService extends ICRUD<Usuario>{
+  /*  List<Usuario> findAll();
 
     Usuario findById(Integer id);
 
@@ -13,6 +13,6 @@ public interface UsuarioService {
 
     Usuario update(Usuario usuario);
 
-    Usuario deleteById(Integer id);
+    Usuario deleteById(Integer id);*/
 }
 
