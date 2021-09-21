@@ -13,6 +13,7 @@ public interface UsuarioService extends ICRUD<Usuario>{
 
     Usuario update(Usuario usuario);
 
-    Usuario deleteById(Integer id);*/
+    Usuario deleteById(Integer id);
+    */
 }
 
