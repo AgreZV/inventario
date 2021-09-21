@@ -1,6 +1,7 @@
 package cl.control.inventario.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -12,7 +13,8 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idProducto;
 
-    @Column(name = "nombre")
+    @NotNull
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
     @Column(name = "tipo")

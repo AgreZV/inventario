@@ -1,7 +1,8 @@
-package cl.control.inventario.Service;
+package cl.control.inventario.Service.Implements;
 
 import cl.control.inventario.Model.Sucursal;
 import cl.control.inventario.Repository.SucursalRepository;
+import cl.control.inventario.Service.SucursalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class SucursalServiceImpl implements SucursalService{
+public class SucursalServiceImpl implements SucursalService {
 
     @Autowired
     private SucursalRepository sucursalRepository;

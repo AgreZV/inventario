@@ -1,7 +1,8 @@
-package cl.control.inventario.Service;
+package cl.control.inventario.Service.Implements;
 
 import cl.control.inventario.Model.Proveedor;
 import cl.control.inventario.Repository.ProveedorRepository;
+import cl.control.inventario.Service.ProveedorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

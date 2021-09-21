@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Perfil {
     @Id
     @Column(name = "idPerfil")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idPerfil;
 
     @Column(name = "nombre", length = 50)

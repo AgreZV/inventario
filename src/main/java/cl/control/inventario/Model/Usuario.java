@@ -1,6 +1,9 @@
 package cl.control.inventario.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Entity
@@ -12,7 +15,8 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
-    @Column(name = "rut", length = 12)
+    @NotNull
+    @Column(name = "rut", nullable = true, length = 12)
     private String rut;
 
     @Column(name = "nombre")
@@ -21,9 +25,11 @@ public class Usuario {
     @Column(name = "apellido")
     private String apellido;
 
+    @Size(min = 6, message = "La password no debe ser menor a 6 caracteres")
     @Column(name = "password")
     private String password;
 
+    @Email
     @Column(name = "correo")
     private String correo;
 

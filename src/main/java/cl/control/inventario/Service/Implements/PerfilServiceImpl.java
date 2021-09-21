@@ -1,8 +1,8 @@
-package cl.control.inventario.Service;
+package cl.control.inventario.Service.Implements;
 
 import cl.control.inventario.Model.Perfil;
-import cl.control.inventario.Model.Usuario;
 import cl.control.inventario.Repository.PerfilRepository;
+import cl.control.inventario.Service.PerfilService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
