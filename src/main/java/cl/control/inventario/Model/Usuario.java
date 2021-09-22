@@ -1,11 +1,15 @@
 package cl.control.inventario.Model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.List;
 
+@ApiModel(description = "Información o propiedades del usuario")
 @Entity
 @Table(name = "usuario")
 public class Usuario {
@@ -15,8 +19,9 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idUsuario;
 
+    @ApiModelProperty(notes = "formato rut debe ser con puntos y guion")
     @NotNull
-    @Column(name = "rut", nullable = true, length = 12)
+    @Column(name = "rut", nullable = false, length = 12)
     private String rut;
 
     @Column(name = "nombre")
@@ -25,10 +30,12 @@ public class Usuario {
     @Column(name = "apellido")
     private String apellido;
 
+    @ApiModelProperty(notes = "La password debe tener al menos 6 caracteres")
     @Size(min = 6, message = "La password no debe ser menor a 6 caracteres")
     @Column(name = "password")
     private String password;
 
+    @ApiModelProperty(notes = "email debe ser formato valido")
     @Email
     @Column(name = "correo")
     private String correo;

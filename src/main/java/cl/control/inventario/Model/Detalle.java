@@ -1,7 +1,10 @@
 package cl.control.inventario.Model;
 
+import io.swagger.annotations.ApiModel;
+
 import javax.persistence.*;
 
+@ApiModel(description = "Información de los detalle del producto")
 @Entity
 @Table(name = "detalle")
 public class Detalle {

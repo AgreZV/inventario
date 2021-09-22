@@ -1,7 +1,11 @@
 package cl.control.inventario.Model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
+@ApiModel(description = "Información del estado del usuario")
 @Entity
 @Table(name = "estado")
 public class Estado {
@@ -11,6 +15,7 @@ public class Estado {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idEstado;
 
+    @ApiModelProperty(notes = "estado de usuario no debe ser mayor a 15 caracteres")
     @Column(name = "descripcion", length = 15)
     private String descripcion;
 

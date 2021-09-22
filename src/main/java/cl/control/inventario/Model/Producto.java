@@ -1,9 +1,15 @@
 package cl.control.inventario.Model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.PositiveOrZero;
 import java.util.List;
 
+@ApiModel(description = "Información o propiedades de los productos")
 @Entity
 @Table(name = "producto")
 public class Producto {
@@ -13,6 +19,7 @@ public class Producto {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idProducto;
 
+    @ApiModelProperty(notes = "Nombre del producto debe ser ingresado")
     @NotNull
     @Column(name = "nombre", nullable = false)
     private String nombre;
@@ -23,15 +30,23 @@ public class Producto {
     @Column(name = "marca")
     private String marca;
 
+    @ApiModelProperty(notes = "precio de compra debe ser mayor que cero")
+    @Positive
     @Column(name = "precioCompra")
     private Double precioCompra;
 
+    @ApiModelProperty(notes = "precio de venta debe ser mayor que cero")
+    @Positive
     @Column(name = "precioVenta")
     private Double precioVenta;
 
+    @ApiModelProperty(notes = "cantidad minima no debe ser menor que cero")
+    @PositiveOrZero
     @Column(name = "cantidadMinima")
     private Integer cantidadMinima;
 
+    @ApiModelProperty(notes = "cantidad actual del producto no debe ser menor que cero")
+    @PositiveOrZero
     @Column(name = "cantidadActual")
     private Integer cantidadActual;
 

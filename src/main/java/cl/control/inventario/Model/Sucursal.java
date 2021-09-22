@@ -1,7 +1,11 @@
 package cl.control.inventario.Model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.persistence.*;
 
+@ApiModel(description = "Información o propiedades de la sucursal")
 @Entity
 @Table(name = "sucursal")
 public class Sucursal {
@@ -11,6 +15,7 @@ public class Sucursal {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer idSucursal;
 
+    @ApiModelProperty(notes = "nombre de la sucursal con máximo de 50 caracteres")
     @Column(name = "nombre", length = 50)
     private String nombre;
 
@@ -23,6 +28,7 @@ public class Sucursal {
     @Column(name = "correoSucursal")
     private String correoSucursal;
 
+    @ApiModelProperty(notes = "descripción de la sucursal con máximo de 150 caracteres")
     @Column(name = "descripcion", length = 150)
     private String descripcion;
 

@@ -1,7 +1,12 @@
 package cl.control.inventario.Model;
 
-import javax.persistence.*;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+import javax.persistence.*;
+import javax.validation.constraints.Email;
+
+@ApiModel(description = "Información o propiedades del proveedor")
 @Entity
 @Table(name = "proveedor")
 public class Proveedor {
@@ -23,6 +28,8 @@ public class Proveedor {
     @Column(name = "telefonoProveedor")
     private String telefonoProveedor;
 
+    @ApiModelProperty(notes = "email debe ser formato valido")
+    @Email
     @Column(name = "correoProveedor")
     private String correoProveedor;
 
