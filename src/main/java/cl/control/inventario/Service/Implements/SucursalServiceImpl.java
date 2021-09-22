@@ -3,6 +3,7 @@ package cl.control.inventario.Service.Implements;
 import cl.control.inventario.Model.Sucursal;
 import cl.control.inventario.Repository.SucursalRepository;
 import cl.control.inventario.Service.SucursalService;
+import cl.control.inventario.exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,12 @@ public class SucursalServiceImpl implements SucursalService {
 
     @Override
     public Sucursal findById(Integer id) throws Exception {
-        Optional<Sucursal> sucursal0 = sucursalRepository.findById(id);
-        return sucursal0.isPresent() ? sucursal0.get() : new Sucursal();
+        Optional<Sucursal> suc = sucursalRepository.findById(id);
+        if (!suc.isPresent()) {
+            throw new ModeloNotFoundException("Sucursal no encontrado con id: " + id);
+        }else{
+            return suc.get();
+        }
     }
 
     @Override

@@ -3,6 +3,7 @@ package cl.control.inventario.Service.Implements;
 import cl.control.inventario.Model.Proveedor;
 import cl.control.inventario.Repository.ProveedorRepository;
 import cl.control.inventario.Service.ProveedorService;
+import cl.control.inventario.exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,12 @@ public class ProveedorServiceImpl implements ProveedorService {
 
     @Override
     public Proveedor findById(Integer id) throws Exception {
-        Optional<Proveedor> proveedor0 = proveedorRepository.findById(id);
-        return proveedor0.isPresent() ? proveedor0.get() : new Proveedor();
+        Optional<Proveedor> prov = proveedorRepository.findById(id);
+        if (!prov.isPresent()) {
+            throw new ModeloNotFoundException("Proveedor no encontrado con id: " + id);
+        }else{
+            return prov.get();
+        }
     }
 
     @Override

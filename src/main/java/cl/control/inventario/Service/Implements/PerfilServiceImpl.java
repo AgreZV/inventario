@@ -3,6 +3,7 @@ package cl.control.inventario.Service.Implements;
 import cl.control.inventario.Model.Perfil;
 import cl.control.inventario.Repository.PerfilRepository;
 import cl.control.inventario.Service.PerfilService;
+import cl.control.inventario.exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,12 @@ public class PerfilServiceImpl implements PerfilService {
 
     @Override
     public Perfil findById(Integer id) throws Exception {
-        Optional<Perfil> perfil0 = perfilRepository.findById(id);
-        return perfil0.isPresent() ? perfil0.get() : new Perfil();
+        Optional<Perfil> opt = perfilRepository.findById(id);
+        if (!opt.isPresent()) {
+            throw new ModeloNotFoundException("Perfil no encontrado con id: " + id);
+        }else{
+            return opt.get();
+        }
     }
 
     @Override

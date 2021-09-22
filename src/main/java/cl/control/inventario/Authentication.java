@@ -1,27 +1,51 @@
 package cl.control.inventario;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
-import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
-import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
-import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.savedrequest.NullRequestCache;
 
 @Configuration
-@EnableAuthorizationServer
-public class Authentication extends AuthorizationServerConfigurerAdapter {
-    @Autowired
-    private AuthenticationManager authenticationManager;
+@EnableWebSecurity
+public class Authentication extends WebSecurityConfigurerAdapter {
+    @Value("${spring.security.user.name}")
+    private String userAuth;
+    @Value("${spring.security.user.password}")
+    private String userPass;
 
     @Override
-    public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.authenticationManager(authenticationManager);
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.inMemoryAuthentication()
+                .passwordEncoder(new BCryptPasswordEncoder())
+                .withUser(userAuth)
+                //.withUser("admin")
+                .password(userPass)
+                //.password("$2a$10$SDFnhA0LxbODvLlb059OQebBtMTuOigNZLNQx.CJvhjyogRQhrRAS")
+                .roles("USER", "ADMIN")
+                .and()
+                .withUser("user")
+                .password(userPass)
+                //.password("$2a$10$SDFnhA0LxbODvLlb059OQebBtMTuOigNZLNQx.CJvhjyogRQhrRAS")
+                .roles("USER")
+        ;
     }
 
     @Override
-    public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.inMemory().withClient("admin").secret("admin")
-                .authorizedGrantTypes("client_credentials").scopes("resource-server-read", "resource-server-write");
+    protected void configure(HttpSecurity http) throws Exception {
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and().
+                authorizeRequests().antMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.POST, "/**").hasAnyRole("ADMIN", "USER")
+                .antMatchers(HttpMethod.DELETE, "/**").hasAnyRole("ADMIN", "USER").and().
+                requestCache().requestCache(new NullRequestCache()).and().
+                httpBasic().and().
+                cors().and().
+                csrf().disable();
     }
 }

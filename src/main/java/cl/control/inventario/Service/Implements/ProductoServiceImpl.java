@@ -3,6 +3,7 @@ package cl.control.inventario.Service.Implements;
 import cl.control.inventario.Model.Producto;
 import cl.control.inventario.Repository.ProductoRepository;
 import cl.control.inventario.Service.ProductoService;
+import cl.control.inventario.exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,8 +18,12 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public Producto findById(Integer id) throws Exception {
-        Optional<Producto> producto0 = productoRepository.findById(id);
-        return producto0.isPresent() ? producto0.get() : new Producto();
+        Optional<Producto> pro = productoRepository.findById(id);
+        if (!pro.isPresent()) {
+            throw new ModeloNotFoundException("Producto no encontrado con id: " + id);
+        }else{
+            return pro.get();
+        }
     }
 
     @Override

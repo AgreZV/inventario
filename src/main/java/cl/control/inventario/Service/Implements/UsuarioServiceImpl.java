@@ -3,6 +3,7 @@ package cl.control.inventario.Service.Implements;
 import cl.control.inventario.Model.Usuario;
 import cl.control.inventario.Repository.UsuarioRepository;
 import cl.control.inventario.Service.UsuarioService;
+import cl.control.inventario.exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,11 @@ public class UsuarioServiceImpl implements UsuarioService {
     @Override
     public Usuario findById(Integer id) {
         Optional<Usuario> user = usuarioRepository.findById(id);
-        return user.isPresent() ? user.get() : new Usuario();
+        if (!user.isPresent()) {
+            throw new ModeloNotFoundException("Usuario no encontrado con id: " + id);
+        }else{
+            return user.get();
+        }
     }
 
     @Override
