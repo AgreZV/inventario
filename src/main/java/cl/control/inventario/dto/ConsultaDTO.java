@@ -2,7 +2,6 @@ package cl.control.inventario.dto;
 
 import cl.control.inventario.Model.Producto;
 import cl.control.inventario.Model.Proveedor;
-import cl.control.inventario.Model.Sucursal;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.io.Serializable;
