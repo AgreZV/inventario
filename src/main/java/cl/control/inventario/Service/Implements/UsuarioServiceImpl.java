@@ -60,7 +60,7 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Usuario usuario = usuarioRepository.findOneByUsername(username);
+        Usuario usuario = usuarioRepository.findOneByNombre(username);
         if(usuario == null) {
             throw new UsernameNotFoundException(String.format("Usuario no existe", username));
         }
@@ -74,8 +74,8 @@ public class UsuarioServiceImpl implements UserDetailsService, UsuarioService {
     }
 
     @Override
-    public Usuario findOneByUsername(String username) {
-        return usuarioRepository.findOneByUsername(username);
+    public Usuario findOneByNombre(String username) {
+        return usuarioRepository.findOneByNombre(username);
     }
 
 }

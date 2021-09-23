@@ -24,7 +24,7 @@ public class Usuario {
     @Column(name = "rut", nullable = false, length = 12)
     private String rut;
 
-    @Column(name = "nombre")
+    @Column(name = "username")
     private String nombre;
 
     @Column(name = "apellido")

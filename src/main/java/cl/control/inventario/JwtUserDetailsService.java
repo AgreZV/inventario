@@ -22,7 +22,7 @@ public class JwtUserDetailsService implements UserDetailsService {
         //usuario: admin
         //clave: 123
         //return new User("admin", "$2y$12$a0OOMjc8bg0F2hjoD91S.eCg4N/98KPSr4Bp3wkR5ykSkyeDdg4tK", new ArrayList<>());
-        Usuario usuario = usuarioService.findOneByUsername(username);
+        Usuario usuario = usuarioService.findOneByNombre(username);
         if (usuario == null) {
             throw new UsernameNotFoundException("Usuario " + username + " no existe");
         }
