@@ -1,12 +1,11 @@
 package cl.control.inventario.Controller;
 
 import cl.control.inventario.Model.Producto;
-import cl.control.inventario.Model.Proveedor;
-import cl.control.inventario.Model.Usuario;
+import cl.control.inventario.Model.Sucursal;
 import cl.control.inventario.Service.ProductoService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import cl.control.inventario.Service.SucursalService;
+import cl.control.inventario.dto.ConsultaDTO;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +16,9 @@ import java.util.List;
 public class ProductoController {
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private SucursalService sucursalService;
 
     @ApiOperation(value = "Obtener el listado de Productos",
             notes = "no requiere parametros de entrada",

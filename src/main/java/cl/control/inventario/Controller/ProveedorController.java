@@ -1,12 +1,11 @@
 package cl.control.inventario.Controller;
 
+import cl.control.inventario.Model.Producto;
 import cl.control.inventario.Model.Proveedor;
-import cl.control.inventario.Model.Sucursal;
-import cl.control.inventario.Model.Usuario;
+import cl.control.inventario.Service.ProductoService;
 import cl.control.inventario.Service.ProveedorService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import cl.control.inventario.dto.ConsultaDTO;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,6 +17,9 @@ public class ProveedorController {
 
     @Autowired
     private ProveedorService proveedorService;
+
+    @Autowired
+    private ProductoService productoService;
 
     @ApiOperation(value = "Obtener el listado de Proveedores",
             notes = "no requiere parametros de entrada",
@@ -81,5 +83,19 @@ public class ProveedorController {
         return "proveedor eliminado correctamente";
     }
 
+    @ApiOperation(value = "Obtener el proveedor junto con sus productos en stock (DTO)",
+            notes = "Se debe pasar el id del proveedor",
+            response = ConsultaDTO.class,
+            responseContainer = "ConsultaDTO")
+    @ApiResponses(value = {
+            @ApiResponse(code = 404, message = "No encontrado"),
+            @ApiResponse(code = 200, message = "OK")})
+    @ApiImplicitParams({@ApiImplicitParam(name = "id", value = "Id del proveedor", dataType = "Integer")})
+    @GetMapping("/stockProductos/{id}")
+    public ConsultaDTO findByIdConItems(@PathVariable("id") Integer id) throws Exception {
+        Proveedor proveedor = proveedorService.findById(id);
+        List<Producto> productos = productoService.findAllByProveedor(proveedor.getIdProveedor());
+        return new ConsultaDTO(proveedor, productos);
+    }
 
 }

@@ -1,9 +1,9 @@
 package cl.control.inventario.Service.Implements;
 
+import cl.control.inventario.exception.ModeloNotFoundException;
 import cl.control.inventario.Model.Producto;
 import cl.control.inventario.Repository.ProductoRepository;
 import cl.control.inventario.Service.ProductoService;
-import cl.control.inventario.exception.ModeloNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,11 +43,16 @@ public class ProductoServiceImpl implements ProductoService {
 
     @Override
     public boolean deleteById(Integer id) throws Exception {
-        Optional<Producto> optionalProveedor = productoRepository.findById(id);
-        if(!optionalProveedor.isPresent()){
+        Optional<Producto> optionalProducto = productoRepository.findById(id);
+        if(!optionalProducto.isPresent()){
             throw new Exception("ID: " + id + " DE PRODUCTO NO ENCONTRADO");
         }
         productoRepository.deleteById(id);
         return true;
+    }
+
+    @Override
+    public List<Producto> findAllByProveedor(Integer idProveedor) {
+        return productoRepository.findAllByProveedor(idProveedor);
     }
 }

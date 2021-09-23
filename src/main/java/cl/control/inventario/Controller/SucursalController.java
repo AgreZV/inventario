@@ -1,7 +1,6 @@
 package cl.control.inventario.Controller;
 
 import cl.control.inventario.Model.Sucursal;
-import cl.control.inventario.Model.Usuario;
 import cl.control.inventario.Service.SucursalService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

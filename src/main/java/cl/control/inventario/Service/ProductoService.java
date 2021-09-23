@@ -2,6 +2,8 @@ package cl.control.inventario.Service;
 
 import cl.control.inventario.Model.Producto;
 
-public interface ProductoService extends ICRUD<Producto> {
+import java.util.List;
 
+public interface ProductoService extends ICRUD<Producto> {
+    public List<Producto> findAllByProveedor(Integer idProveedor);
 }

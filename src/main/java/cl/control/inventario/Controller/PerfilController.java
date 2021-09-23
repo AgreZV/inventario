@@ -1,8 +1,6 @@
 package cl.control.inventario.Controller;
 
 import cl.control.inventario.Model.Perfil;
-import cl.control.inventario.Model.Producto;
-import cl.control.inventario.Model.Usuario;
 import cl.control.inventario.Service.PerfilService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

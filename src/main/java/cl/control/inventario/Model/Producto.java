@@ -62,7 +62,8 @@ public class Producto {
 
     @ManyToOne
     @JoinColumn(name = "idProveedor", nullable = false, foreignKey = @ForeignKey(name = "FK_consulta_proveedor"))
-    private Estado estado;
+    private Proveedor proveedor;
+
 
  /*   @OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER)
     @JoinColumn(nullable = false, name = "id_usuario")
@@ -152,19 +153,19 @@ public class Producto {
         this.sucursales = sucursales;
     }
 
-    public Estado getEstado() {
-        return estado;
-    }
-
-    public void setEstado(Estado estado) {
-        this.estado = estado;
-    }
-
     public Detalle getDetalle() {
         return detalle;
     }
 
     public void setDetalle(Detalle detalle) {
         this.detalle = detalle;
+    }
+
+    public Proveedor getProveedor() {
+        return proveedor;
+    }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
     }
 }
