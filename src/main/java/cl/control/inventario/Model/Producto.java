@@ -61,16 +61,11 @@ public class Producto {
     private List<Sucursal> sucursales;
 
     @ManyToOne
-    @JoinColumn(name = "idProveedor", nullable = false, foreignKey = @ForeignKey(name = "FK_consulta_proveedor"))
+    @JoinColumn(name = "idProveedor", nullable = false, foreignKey = @ForeignKey(name = "FK_producto_proveedor"))
     private Proveedor proveedor;
 
-
- /*   @OneToOne(targetEntity = Usuario.class, fetch = FetchType.EAGER)
-    @JoinColumn(nullable = false, name = "id_usuario")
-    private Usuario user;*/
-
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "idDetalle", referencedColumnName = "idDetalle")
+    @JoinColumn(name = "idDetalle", referencedColumnName = "idDetalle", foreignKey = @ForeignKey(name = "FK_producto_detalle"))
     private Detalle detalle;
 
     public Integer getIdProducto() {

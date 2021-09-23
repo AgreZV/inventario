@@ -1,7 +1,6 @@
 package cl.control.inventario.Repository;
 
 import cl.control.inventario.Model.Producto;
-import cl.control.inventario.Model.Sucursal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,6 +12,6 @@ import java.util.List;
 public interface ProductoRepository extends JpaRepository<Producto, Integer> {
 
     //select * from producto p where p.id_proveedor = :idProveedor;
-    @Query("from producto p where p.id_proveedor  = :idProveedor")
-    public List<Producto> findAllByProveedor(@Param("idProveedor") Integer idProveedor);
+   // @Query("from producto p where p.id_proveedor.id_proveedor = :idProveedor")
+    //List<Producto> findAllByProveedor(@Param("idProveedor") Integer idProveedor);
 }

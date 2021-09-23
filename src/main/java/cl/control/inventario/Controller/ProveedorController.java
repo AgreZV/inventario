@@ -1,10 +1,8 @@
 package cl.control.inventario.Controller;
 
-import cl.control.inventario.Model.Producto;
 import cl.control.inventario.Model.Proveedor;
 import cl.control.inventario.Service.ProductoService;
 import cl.control.inventario.Service.ProveedorService;
-import cl.control.inventario.dto.ConsultaDTO;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -83,6 +81,7 @@ public class ProveedorController {
         return "proveedor eliminado correctamente";
     }
 
+    /*
     @ApiOperation(value = "Obtener el proveedor junto con sus productos en stock (DTO)",
             notes = "Se debe pasar el id del proveedor",
             response = ConsultaDTO.class,
@@ -96,6 +95,6 @@ public class ProveedorController {
         Proveedor proveedor = proveedorService.findById(id);
         List<Producto> productos = productoService.findAllByProveedor(proveedor.getIdProveedor());
         return new ConsultaDTO(proveedor, productos);
-    }
+    }*/
 
 }

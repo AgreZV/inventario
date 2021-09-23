@@ -51,8 +51,8 @@ public class ProductoServiceImpl implements ProductoService {
         return true;
     }
 
-    @Override
+    /*@Override
     public List<Producto> findAllByProveedor(Integer idProveedor) {
         return productoRepository.findAllByProveedor(idProveedor);
-    }
+    }*/
 }
