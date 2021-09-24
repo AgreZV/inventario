@@ -2,14 +2,12 @@ package cl.control.inventario.dto;
 
 import cl.control.inventario.Model.Producto;
 import cl.control.inventario.Model.Proveedor;
-//import org.springframework.hateoas.RepresentationModel;
 import org.springframework.hateoas.ResourceSupport;
 
 import java.io.Serializable;
 import java.util.List;
 
 public class ConsultaDTO extends ResourceSupport implements Serializable {
-//public class ConsultaDTO extends RepresentationModel implements Serializable {
 
     private Proveedor proveedor;
     private List<Producto> listaProductos;
